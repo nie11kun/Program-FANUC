@@ -1,16 +1,18 @@
 %
 O8302(SAN JIAO)
 
+G52 V0 W0
 (send parameter)
 #512=#868(dresser big speed)
 #514=#870(amount of feed,big)
 #513=#869(dresser small speed)
 #515=#871(amount of feed,small)
 #510=#853(dress times)
-#537=#850  (new wheel flag)
-#527=#859  (current wheel dia.)
+#537=#850(new wheel flag)
+#527=#859(current wheel dia.)
 IF [#537 EQ 0] THEN #527=#852 (new wheel dia.)
 #524=#860(wheel line speed m/s)
+#521=#866
 
 (dress programm)
 #592=#512
@@ -46,9 +48,9 @@ IF [#537 EQ 0] THEN #527=#852 (new wheel dia.)
 #538=#534
 IF [#533 GT #534] THEN #538 = #533
 
-IF [#592 LE 0] THEN #592=1000
+IF [#592 LE 0] THEN #592=100
 IF [#537 EQ 0] GOTO 50
-#522=#516
+#522=#857
 #523=#527
 GOTO 100
 
@@ -57,7 +59,7 @@ N50
 #523=#527+#538*2
 
 N100
-G90 G94 G64 G01 V[#522+3] F[3*#592]
+G90 G94 G64 G01 V[#522+1] F[3*#592]
 W[#565+#517]
 V[#522+1]
 
@@ -74,7 +76,9 @@ IF [#511 LT [#510-1]] GOTO 600
 
 N600
 IF [#511 GT #510] GOTO 5000
+
 #522=#522-#594
+
 G52 W[#517+#565] V#522
 
 N800
@@ -94,8 +98,12 @@ G01 V0
 W0
 
 #523=#523-2*#594
-#525=#524*60000/(#3101*#527)
+
 #537=1
+#850=#537  (wheel flag)
+
+#857=#522
+
 IF [#523 LT #527] GOTO 1100
 #532=#532+1
 GOTO 500
@@ -103,20 +111,16 @@ GOTO 500
 N1100
 #527=#523
 #535=#535+#594
-#516=#522
+
+#780=#780-#535 (Cut X)
+
 #511=#511+1
 IF [#511 LT #510] GOTO 500
 
 N5000
 G52 W0 V0
-M5 M9 
-(M15)
-G90 G64 G01 V[#522+3] F[3*#592]
 
-(send parameter)
-#850=#537  (wheel flag)
-#890=#525(wheel rpm)
-#859=#527(curr wheel dia.)
-#780=#780-#535 (Cut X)
+G90 G64 G01 V[#522+1] F[3*#592]
+
 M99
 %
