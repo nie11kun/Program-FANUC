@@ -16,6 +16,7 @@ N50#560=60000*#860/[#3101*#859](Grinding wheel Speed Calc )
 N60S#560(Grinding Wheel Start) 
 N80G04X1 
 N81M03 
+G04X7
 N83
 N85M35 
 N84IF[#1004EQ1]GOTO690(Auto tool set)
