@@ -1,0 +1,11 @@
+%
+O0500(tool set finish then x quit)
+N10IF[[#606EQ0]AND[#1002EQ1]]THEN#681=#5022(Current Z absolute coordinates) 
+N20IF[[#606EQ0]AND[#1002EQ1]]THEN#682=#5023(Current C absolute coordinates) 
+N30IF[[#606EQ0]AND[#1002EQ1]]THEN#780=#5021(READ X absolute coordinates)
+N40G90G01X[#608+#611]F2000
+N50#753=#5121(DRF_X)
+N60#754=#5122(DRF_Z)
+N70G04X9999 
+N80M30
+%
