@@ -1,5 +1,5 @@
 %
-O8110
+O8110(mo xue chu shi wei zhi)
     IF[#902EQ0]GOTO200
     #902=0
     #120=0
